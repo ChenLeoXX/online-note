@@ -14,6 +14,14 @@
         {
           test:/\.js$/,
           use:['babel-loader']
+        },
+        {
+          test:/\.(jpg|gif|png|svg|jpeg|tff|)$/,
+          loader: "file-loader",
+          options:{
+            name: "[hash].[ext]",
+            outputPath:'../img/'
+          }
         }
       ]
     },

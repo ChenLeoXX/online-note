@@ -6,8 +6,7 @@ body {
 }
 //贴纸实例 
 .note {
-    position: relative;
-    float: left;
+    position: absolute;
     width: 300px;
     margin-left: 20px;
     min-height: 200px;
@@ -40,10 +39,12 @@ body {
 }
 @before-transform: skew(10deg) rotate(4deg);
 .note::before{
-   transform: @note-transform;
+    right:20px;
+   transform: @before-transform;
 }
 @after-transform:skew(-10deg) rotate(-4deg);
 .note::after {
+    left:20px;
  transform: @after-transform;
 }
 // 图钉

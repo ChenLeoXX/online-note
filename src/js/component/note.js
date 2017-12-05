@@ -1,5 +1,5 @@
 require('less/note.less')
-const event = require('./evnet.js')
+const event = require('./event.js')
 const totas = require('./totas.js').totas
 
 function Note(opts) {
@@ -34,7 +34,7 @@ Note.prototype = {
 </div>`
         this.$note = tpl
         $noteCt = $note.find('.content')
-        $noteCt.html(this.defaultOpts.text)
+        $noteCt.html(this.opts.text)
         this.opts.$ct.append(this.$note)
         if (!this.id) {
             this.$note.css({
