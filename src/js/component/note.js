@@ -121,7 +121,7 @@ Note.prototype = {
             if(ret.status === 0){
               toast('add success');
             }else{
-              self.$note.fadeOut(300);
+              self.$note.remove();
               event.trigger('waterfall')
               toast(ret.errorMsg);
             }
@@ -134,7 +134,7 @@ Note.prototype = {
           .done(function(ret){
             if(ret.status === 0){
               toast('delete success');
-              self.$note.remove();
+              self.$note.fadeOut(300);
               event.trigger('waterfall')
             }else{
               totas(ret.errorMsg);
