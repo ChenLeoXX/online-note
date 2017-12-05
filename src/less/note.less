@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    background: url(../img/bg2.png) no-repeat;
+    background-size: cover;
+}
+//贴纸实例 
+.note {
+    position: relative;
+    float: left;
+    width: 300px;
+    margin-left: 20px;
+    min-height: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    background-color: #fa4;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.4), 0px 0px 40px rgba(0, 0, 0, 0.1) inset;
+    margin: 20px;
+}
+// 贴纸阴影
+@note-position: absolute;
+@note-background: transparent;
+@shadow-width: 90%;
+@shadow-height: 80%;
+@bottom-distance :13px;
+@position-z-index: -1;
+@note-shadow: 0px 4px 5px 2px rgba(0, 0, 0, .7);
+.note::before,
+.note::after {
+    content:"";
+    position: @note-position;
+    background: @note-background;
+    bottom: @bottom-distance;
+    width: @shadow-width;
+    height: @shadow-height;
+    z-index: @position-z-index;
+    box-shadow: @note-shadow;
+}
+@before-transform: skew(10deg) rotate(4deg);
+.note::before{
+   transform: @note-transform;
+}
+@after-transform:skew(-10deg) rotate(-4deg);
+.note::after {
+ transform: @after-transform;
+}
+// 图钉
+.tuding {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px solid #f33c3ff2;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .6);
+}
+.tuding::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #fff;
+    left: 0;
+    top: -2px;
+}
+
+.tuding::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(150, 33, 33);
+    left: 0;
+    top: 0px;
+}
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+}
+.content {
+    outline: none;
+    min-height:200px;    
+}
+.draggable{
+    opacity: 0.7;
+    cursor:move;
+    transition: none;
+}

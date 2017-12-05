@@ -5,7 +5,6 @@ function totas(msg,time){
   this.createTotas()
   this.showTotas() //原型上创建两个方法控制创建，消失功能
 }
-console.log('complete')
 totas.prototype = {
   createTotas:function(){
     let tpl= '<div class="totas">'+ this.msg+'</div>' //元素模板
