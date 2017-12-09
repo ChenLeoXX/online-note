@@ -19,7 +19,7 @@ Note.prototype = {
         $ct: $('#content').length > 0 ? $('#content') : $('body'), // 默认容器
         text: '输入内容...'
     },
-    initOpts: function () {
+    initOpts: function (opts) {
         this.opts = $.extend({}, this.defaultOpts, opts || {}) //复制一个选项参数，如果没有opts参数，默认为default
         if (this.opts.id) {
             this.id = this.opts.id
@@ -27,57 +27,61 @@ Note.prototype = {
     },
     create: function () {
         //字符串模板
-        let tpl = `<div class=".note"> 
+        let tpl = `<div class="note"> 
+     <div class="time">Date:${(new Date()).toLocaleDateString()} <br>
+                       Time:${(new Date()).toLocaleTimeString()}
+     </div>
      <div class="tuding" contenteditable=false></div>
      <div class="close" contenteditable=false>X</div>
      <div class="content" contenteditable=true></div>
 </div>`
-        this.$note = tpl
-        $noteCt = $note.find('.content')
-        $noteCt.html(this.opts.text)
-        this.opts.$ct.append(this.$note)
-        if (!this.id) {
-            this.$note.css({
-                bottom: '10px'
-            })
-        } //新增无id贴纸，放到底部
+        this.$note = $(tpl)
+        this.$ct = this.$note.parent()
+        var $noteCt = this.$note.find('.content')
+            $noteCt.html(this.opts.text)
     },
     setStyle: function () {
         let color = this.colorPool[Math.floor(Math.random() * 6)]
-        this.$note.css({
-            background: color
-        })
+        this.$note.css('background',color)
+        this.opts.$ct.append(this.$note)
+        event.trigger('waterfall')
     },
     layout: function () {
         let self = this
-        if (slef.clk) {
+        if (self.clk) {
             clearTimeout(self.clk)
         }
-        self.clk = setTimeout(() => {
+        self.clk = setTimeout(function(){
             event.trigger('waterfall')
-        }, 100);
+        },100);
     },
     bindEvent: function () {
         var self = this,
-            $note = this.$note
-        $delte = $note.find('.close')
-        $noteHead = $note.find('.tuding')
-        $noteCt = $note.find('.content')
-        $noteHead.on('click', function () {
-            self.dlete()
+            $note = this.$note,
+            $delete = $note.find('.close'),
+            $noteHead = $note.find('.tuding'),
+            $noteCt = $note.find('.content')
+            $note.on('mouseenter',function(){
+                $delete.css({display:'inline'})
+            }).on('mouseleave',function(){
+                $delete.css({display:'none'})
+            })
+        $delete.on('click', function () {
+            self.delete()
         })
         $noteCt.on('focus', function () { //绑定事件，模拟input的change事件 $.data()方法设置属性，存储 note的文本内容
-            if ($noteCt.html() === '请输入内容...') {
+            if ($noteCt.html() == '输入内容...') {
                 $noteCt.html('')
             }
-            $noteCt.data('before'.$noteCt.html())
+            $noteCt.data('before',$noteCt.html())
+            console.log($noteCt.data('before'))
         }).on('blur pasete', function () {
             if ($noteCt.data('before') != $noteCt.html()) {
                 $noteCt.data('before', $noteCt.html())
                 self.layout()
                 if (self.id) {
-                    self.eidt($noteCt.html())
-                } else {
+                    self.edit($noteCt.html())
+                } else if(self.id ===self.id){
                     self.add($noteCt.html())
                 }
             }
@@ -107,23 +111,25 @@ Note.prototype = {
             note: msg
           }).done(function(ret){
           if(ret.status === 0){
-            toast('update success');
+            totas('Update Success');
           }else{
-            toast(ret.errorMsg);
+            totas(ret.errorMsg);
           }
         })
       },
     
       add: function (msg){
+          console.log('execute...add')
         var self = this;
         $.post('/api/notes/add', {note: msg})
           .done(function(ret){
             if(ret.status === 0){
-              toast('add success');
+              self.id =ret.id
+              totas('Add Success');
             }else{
               self.$note.remove();
               event.trigger('waterfall')
-              toast(ret.errorMsg);
+              totas(ret.errorMsg);
             }
           });
       },
@@ -133,8 +139,8 @@ Note.prototype = {
         $.post('/api/notes/delete', {id: this.id})
           .done(function(ret){
             if(ret.status === 0){
-              toast('delete success');
-              self.$note.fadeOut(300);
+              totas('Delete Success');
+              self.$note.remove()
               event.trigger('waterfall')
             }else{
               totas(ret.errorMsg);

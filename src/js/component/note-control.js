@@ -1,28 +1,28 @@
 const Note = require('./note.js').note;
-const Toast = require('./toast.js').toast;
-const Event = require('mod/event.js');
+const Totas = require('./totas.js').totas;
+const event = require('./event.js');
 
-let noteControl = (function () {
+var noteControl = (function () {
     function load() {
         $.get('/api/notes').done(function (ret) {
-            if (ret.status === 0) {
+            if (ret.status == 0) {
                 $.each(ret.data, function (idx, artical) {
                     new Note({
                         id: artical.id,
                         text: artical.text
                     })
                 })
-                Event.trigger('waterfall')
+                event.trigger('waterfall')
             } else {
-                Toast(ret.errorMsg)
+                Totas(ret.errorMsg)
             }
         }).fail(function () {
-            Toast('网络异常')
+            Totas('网络异常')
         })
     }
 
     function add() {
-        new Note();
+       new Note();
     }
 
     return {

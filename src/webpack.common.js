@@ -25,6 +25,7 @@
         }
       ]
     },
+    devtool: 'inline-source-map',
     plugins:[
       new webpack.ProvidePlugin({
         $:'jquery'

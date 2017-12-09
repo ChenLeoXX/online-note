@@ -1,4 +1,11 @@
-const WaterFall = require('../component/waterfall.js')
 require('less/index.less')
-console.log(WaterFall)
-Totas('Hello world',1500)
+const waterFall = require('../component/waterfall.js')
+var NoteControl = require('../component/note-control.js').noteControl
+var event = require('../component/event.js')
+NoteControl.load()
+$('.new-note').on('click', function() {
+  NoteControl.add()
+})
+event.on('waterfall', function(){
+  waterFall.init($('#content'))
+})

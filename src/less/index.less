@@ -1,14 +1,74 @@
-html,body{
+html,
+body{
     height: 100%;
+    margin:0;
+}
+a {
+text-decoration:none;
+color:rgb(0, 0, 0);
 }
 body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    background: url(../img/bg2.png) no-repeat;
+    background: url(../img/bg2.png);
     background-size: cover;
 }
 #content {
+    font-family: Arial, Helvetica, sans-serif;
     position: relative;
     height: -webkit-calc(100% - 30px);
-    height: calc(100% - 30px);
+    height: calc(100% - 30px)
+}
+#top-nav {
+    .login{
+        color:rgb(0, 0, 0);
+        float:right;
+        cursor: pointer;
+        margin-right: 20px;
+        font-family: 'Shadows Into Light Two', cursive;
+        font-weight: bold;
+        font-size:25px;
+    }
+    i{  font-size: 35px;
+        line-height: 40px;
+        vertical-align: sub;
+        }
+}
+.logo{
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size:30px;
+    font-weight:bold;
+    margin-left:20px;
+}
+.clearfix::after{
+    content:'';
+    display: block;
+    clear:both;
+}
+.note-add {
+    cursor: pointer;
+}
+.new-note {
+    display: inline-block;
+    font-size:80px;
+    position: fixed;
+    bottom:30px;
+    right:40px;
+    color:#fff;
+    cursor: pointer;
+        i{
+            display: block;
+            transform: rotate(180deg);
+        }
+    &:hover i{
+        animation: roll 0.5s linear 1;
+    }
+}
+@keyframes roll {
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+        transfrom:rotate(180deg);
+    }
 }

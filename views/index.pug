@@ -1,13 +1,21 @@
-extends layout
-
-block content
-    nav#top-nav
-        
+<!DOCTYPE html>
+html
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css")
+    link(href='http://fonts.font.im/css?family=Shadows+Into+Light+Two' rel='stylesheet' type='text/css')
+    title 在线便利贴
+  body
+    nav#top-nav.clearfix
+      div.login 
+        a Login 
+          i(class="fa fa-github" aria-hidden="true")   
+      div.logo Sticky-Note
     div#content
-        div.note
-            div.close
-            div.tuding
-            div.content
-        
-            
+    div.new-note
+      i(class="fa fa-plus-circle" aria-hidden="true") 
+    block content
+      
     script(src='js/main.js')

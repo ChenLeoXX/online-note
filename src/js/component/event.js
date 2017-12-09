@@ -7,7 +7,9 @@ var event = (function(){
       })
     }
     function trigger(topic,args){
-      if(!eventPool[topic]) return
+      if(!eventPool[topic]) {
+        return
+      }
       for(let i=0;i<eventPool[topic].length;i++){
         eventPool[topic][i].handler(args)
       }
