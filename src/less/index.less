@@ -27,7 +27,8 @@ body {
         margin-right: 20px;
         font-family: 'Shadows Into Light Two', cursive;
         font-weight: bold;
-        font-size:25px;
+        font-size:30px;
+        margin-top:5px;
     }
     i{  font-size: 35px;
         line-height: 40px;
@@ -36,9 +37,12 @@ body {
 }
 .logo{
     font-family: 'Shadows Into Light Two', cursive;
-    font-size:30px;
+    font-size:39px;
+    text-shadow:1px 1px rgba(0, 0, 0, 0.8), 2px 2px rgba(140, 140, 140, 0.8), 3px 3px rgba(128, 128, 128, 0.8), 4px 4px rgba(169, 169, 169, 0.8), 5px 5px rgba(121, 121, 121, 0.8), 6px 6px rgba(160, 160, 160, 0.8);
     font-weight:bold;
     margin-left:20px;
+    float:left;
+
 }
 .clearfix::after{
     content:'';
@@ -71,4 +75,23 @@ body {
     100%{
         transfrom:rotate(180deg);
     }
+}
+.user {
+    float: right;
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: 26px;
+    font-weight: bold;
+    margin-right: 20px;
+    img{
+        width: 40px;
+        margin-top:8px;
+        margin-right:8px;
+        border-radius: 50%;
+    }
+    span,a{
+        vertical-align: super;
+    }
+}
+.user span:nth-child(3){
+    cursor:pointer;
 }

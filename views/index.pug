@@ -9,13 +9,19 @@ html
     title 在线便利贴
   body
     nav#top-nav.clearfix
-      div.login 
-        a Login 
-          i(class="fa fa-github" aria-hidden="true")   
+      if isLogin
+        div.user
+          img(src=user.avatar).avatar
+          span #{user.username} | 
+          a(href="/auth/logout") Logout
+      else 
+        div.login 
+          a(href="/auth/github") Login 
+            i(class="fa fa-github" aria-hidden="true")   
+
       div.logo Sticky-Note
     div#content
     div.new-note
       i(class="fa fa-plus-circle" aria-hidden="true") 
-    block content
       
     script(src='js/main.js')

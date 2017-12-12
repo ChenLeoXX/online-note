@@ -10,7 +10,8 @@ router.get('/notes', function(req, res, next) {
 });
 router.post('/notes/add',function(req,res,next){
   var noteMsg =req.body.note
-  Note.create({text:noteMsg}).then(Note.findOne({text:noteMsg})).then((notes=>{
+  Note.create({text:noteMsg}).then(Note.findOne({text:noteMsg,raw:true})).then((notes=>{  //查找唯一id,赋值给note实例，防止多次修改创建
+      console.log(notes)
       res.send({status:0,id:notes.id})
   })).catch(()=>{
     res.send({status:1,errorMsg:'Database Error'})

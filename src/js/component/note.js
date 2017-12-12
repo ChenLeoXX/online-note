@@ -28,8 +28,7 @@ Note.prototype = {
     create: function () {
         //字符串模板
         let tpl = `<div class="note"> 
-     <div class="time">Date:${(new Date()).toLocaleDateString()} <br>
-                       Time:${(new Date()).toLocaleTimeString()}
+     <div class="time">Date:${(new Date()).toLocaleDateString()}
      </div>
      <div class="tuding" contenteditable=false></div>
      <div class="close" contenteditable=false>X</div>
