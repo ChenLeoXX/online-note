@@ -1,5 +1,7 @@
  const path = require('path');
  const webpack = require('webpack');
+ const ExtractTextPlugin=require('extract-text-webpack-plugin')
+ const autoprefixer=require('autoprefixer')
  module.exports= {
    entry: path.join(__dirname,'js/app/index.js'),
    output: {
@@ -9,7 +11,10 @@
     module:{
       rules:[
         { test:/\.less$/,
-          use:['style-loader','css-loader','less-loader']
+          use:ExtractTextPlugin.extract({
+            fallback:'style-loader',
+            use:['css-loader','less-loader','postcss-loader']
+          })
         },
         {
           test:/\.js$/,
@@ -30,6 +35,14 @@
       new webpack.ProvidePlugin({
         $:'jquery'
       }),
+      new ExtractTextPlugin("css/index.css"),
+      new webpack.LoaderOptionsPlugin({
+        options: {
+            postcss: [
+                autoprefixer(),
+            ]
+        }
+    })
     ],
     resolve:{
       alias:  {
