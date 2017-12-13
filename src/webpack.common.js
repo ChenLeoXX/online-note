@@ -5,15 +5,30 @@
  module.exports= {
    entry: path.join(__dirname,'js/app/index.js'),
    output: {
-    path: path.resolve('./public'),
-    filename: '[name].js'
+    publicPath: '/',
+    path:path.resolve('./public/'),
+    filename: 'js/[name].js'
     },
     module:{
       rules:[
-        { test:/\.less$/,
+        {
+          test:/\.less$/,
           use:ExtractTextPlugin.extract({
             fallback:'style-loader',
             use:['css-loader','less-loader','postcss-loader']
+          })
+        },
+        { test:/\.css$/,
+          use:ExtractTextPlugin.extract({
+            fallback:'style-loader',
+            use:[
+              {
+                loader:'css-loader',
+                options:{
+                  minimize: true
+                }
+              }
+            ]
           })
         },
         {
@@ -21,11 +36,10 @@
           use:['babel-loader']
         },
         {
-          test:/\.(jpg|gif|png|svg|jpeg|tff|)$/,
+          test:/\.(jpg|gif|png|svg|jpeg|tff|ico)$/,
           loader: "file-loader",
           options:{
-            name: "[hash].[ext]",
-            outputPath:'../img/'
+            name: "img/[hash].[ext]",
           }
         }
       ]
