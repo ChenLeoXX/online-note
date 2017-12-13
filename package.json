@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "webpack": "webpack --config src/webpack.common.js",
-    "start": "node  ./bin/www PROT=8080",
+    "start": "node  ./bin/www PROT=3030",
     "watch": "onchange \"src/**/*.js\" \"src/**/*.less\" \"views/**/*.pug\" -- npm run webpack",
     "product" :"webpack --config src/webpack.prod.js"
   },
