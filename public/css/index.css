@@ -1,3 +1,7 @@
+@font-face {
+  font-family: 'Shadows Into Light Two';
+  src: url(/img/3b8448c383487e8dac10c13518d8338b.ttf), url(/img/6e47289cdda4dcea9dde94e4d19b9d1f.woff);
+}
 html,
 body {
   height: 100%;
@@ -198,6 +202,10 @@ body {
   position: absolute;
   bottom: 8px;
   right: 8px;
+}
+@font-face {
+  font-family: 'Shadows Into Light Two';
+  src: url(/img/3b8448c383487e8dac10c13518d8338b.ttf), url(/img/6e47289cdda4dcea9dde94e4d19b9d1f.woff);
 }
 .totas {
   font-family: 'Shadows Into Light Two', cursive;

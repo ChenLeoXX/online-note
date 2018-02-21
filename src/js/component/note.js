@@ -28,7 +28,7 @@ Note.prototype = {
     create: function () {
         //字符串模板
         let tpl = `<div class="note"> 
-     <div class="time">Date:${(new Date()).toLocaleDateString()}
+     <div class="time">Date:${this.opts.createTime.slice(0,11)}
      </div>
      <div class="tuding" contenteditable=false></div>
      <div class="close" contenteditable=false>X</div>

@@ -9,7 +9,8 @@ var noteControl = (function () {
                 $.each(ret.data, function (idx, artical) {
                     new Note({
                         id: artical.id,
-                        text: artical.text
+                        text: artical.text,
+                        createTime:artical.createdAt
                     })
                 })
                 event.trigger('waterfall')

@@ -36,7 +36,7 @@
           use:['babel-loader']
         },
         {
-          test:/\.(jpg|gif|png|svg|jpeg|tff|ico)$/,
+          test:/\.(jpg|gif|png|svg|jpeg|ttf|ico|woff)$/,
           loader: "file-loader",
           options:{
             name: "img/[hash].[ext]",
