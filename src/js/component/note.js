@@ -19,7 +19,7 @@ Note.prototype = {
         $ct: $('#content').length > 0 ? $('#content') : $('body'), // 默认容器
         text: '输入内容...',
         Timestamp:function(){
-            return new Date().toDateString().replace(/\//g,'-')
+            return new Date().toLocaleDateString().replace(/\//g,'-')
         }
     },
     initOpts: function (opts) {

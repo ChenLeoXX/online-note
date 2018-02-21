@@ -51,7 +51,7 @@ router.post('/notes/edit',function(req,res,next){
 })
 //删除
 router.post('/notes/delete',function(req,res,next){
-  if(!req.session.user){
+  if(req.session.user){
     var uid = req.session.user.id
     Note.destroy({where:{id:req.body.id,uid:uid}}).then(()=>{
       res.send({status:0})
@@ -62,5 +62,4 @@ router.post('/notes/delete',function(req,res,next){
     })
   }
 })
-
 module.exports = router;
