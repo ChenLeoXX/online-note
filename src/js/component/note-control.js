@@ -10,7 +10,7 @@ var noteControl = (function () {
                     new Note({
                         id: artical.id,
                         text: artical.text,
-                        createdTime :artical.createdTime          
+                        createdTime :artical.createdAt          
                     })
                 })
                 event.trigger('waterfall')
