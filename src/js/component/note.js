@@ -39,12 +39,12 @@ Note.prototype = {
         this.$note = $(tpl)
         this.$ct = this.$note.parent()
         var $noteCt = this.$note.find('.content')
-            $noteCt.html(this.opts.text)
+            $noteCt.html(this.opts.text);
         var $createTime = this.$note.find('.time')  
         if(!this.opts.createdTime){
-            $createTime.html() = this.opts.Timestamp()
+            $createTime.html(this.opts.Timestamp())
         }else{
-            $createTime.html() = this.opts.createdTime.slice(0,11)
+            $createTime.html(this.opts.createdTime.slice(0,11))
         }
     },
     setStyle: function () {
