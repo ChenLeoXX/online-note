@@ -17,7 +17,10 @@ Note.prototype = {
     defaultOpts: {
         id: '',
         $ct: $('#content').length > 0 ? $('#content') : $('body'), // 默认容器
-        text: '输入内容...'
+        text: '输入内容...',
+        Timestamp:function(){
+            return new Date().toDateString().replace(/\//g,'-')
+        }
     },
     initOpts: function (opts) {
         this.opts = $.extend({}, this.defaultOpts, opts || {}) //复制一个选项参数，如果没有opts参数，默认为default
@@ -28,8 +31,7 @@ Note.prototype = {
     create: function () {
         //字符串模板
         let tpl = `<div class="note"> 
-     <div class="time">Date:${this.opts.createTime.slice(0,11)}
-     </div>
+     <div class="time"></div>
      <div class="tuding" contenteditable=false></div>
      <div class="close" contenteditable=false>X</div>
      <div class="content" contenteditable=true></div>
@@ -38,6 +40,12 @@ Note.prototype = {
         this.$ct = this.$note.parent()
         var $noteCt = this.$note.find('.content')
             $noteCt.html(this.opts.text)
+        var $createTime = this.$note.find('.time')  
+        if(!this.opts.createdTime){
+            $createTime.html() = this.opts.Timestamp()
+        }else{
+            $createTime.html() = this.opts.createdTime.slice(0,11)
+        }
     },
     setStyle: function () {
         let color = this.colorPool[Math.floor(Math.random() * 6)]
