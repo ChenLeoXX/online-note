@@ -6,11 +6,11 @@ var sequelize = new Sequelize(undefined, undefined, undefined, {
     storage: path.join(__dirname, '../database/database.sqlite')
 })
 
-sequelize.authenticate().then(function(msg){
-   console.log('数据库链接成功')
-}).catch(function(err){
-    console.log('数据库错误')
-})
+// sequelize.authenticate().then(function(msg){
+//    console.log('数据库链接成功')
+// }).catch(function(err){
+//     console.log('数据库错误')
+// })
 
 var Note = sequelize.define('note', {
     text: {
